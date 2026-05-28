@@ -87,6 +87,21 @@ export function AuthProvider({ children }) {
     }
   }
 
+  async function forgotPassword(emailAddress) {
+    setAuthError("");
+    return authService.forgotPassword(emailAddress);
+  }
+
+  async function resetPassword(resetToken, newPassword) {
+    setAuthError("");
+    return authService.resetPassword(resetToken, newPassword);
+  }
+
+  async function verifyEmail(verificationToken) {
+    setAuthError("");
+    return authService.verifyEmail(verificationToken);
+  }
+
   const value = useMemo(
     () => ({
       user,
@@ -97,6 +112,10 @@ export function AuthProvider({ children }) {
       login,
       register,
       logout,
+      forgotPassword,
+      resetPassword,
+      verifyEmail,
+      loadCurrentUser,
     }),
     [user, isAuthenticated, isCheckingSession, authError]
   );

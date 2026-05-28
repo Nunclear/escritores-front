@@ -33,4 +33,43 @@ export const authService = {
 
     return data;
   },
+
+  async refreshToken(refreshToken) {
+    const { data } = await apiClient.post("/auth/refresh", {
+      refreshToken,
+    });
+
+    return data;
+  },
+
+  async forgotPassword(emailAddress) {
+    const { data } = await apiClient.post("/auth/forgot-password", {
+      emailAddress,
+    });
+
+    return data;
+  },
+
+  async resetPassword(resetToken, newPassword) {
+    const { data } = await apiClient.post("/auth/reset-password", {
+      resetToken,
+      newPassword,
+    });
+
+    return data;
+  },
+
+  async verifyEmail(verificationToken) {
+    const { data } = await apiClient.post("/auth/verify-email", {
+      verificationToken,
+    });
+
+    return data;
+  },
+
+  async invalidateAllSessions() {
+    const { data } = await apiClient.post("/auth/invalidate-all-sessions");
+
+    return data;
+  },
 };

@@ -1,7 +1,13 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "../pages/public/HomePage";
-import LoginPage from "../pages/public/LoginPage";
-import RegisterPage from "../pages/public/RegisterPage";
+import { ExplorePage } from "../pages/public/ExplorePage";
+import { StoryReaderPage } from "../pages/public/StoryReaderPage";
+import { LoginPage } from "../pages/LoginPage";
+import { RegisterPage } from "../pages/RegisterPage";
+import { ForgotPasswordPage } from "../pages/ForgotPasswordPage";
+import { ResetPasswordPage } from "../pages/ResetPasswordPage";
+import { WriterDashboardPage } from "../pages/private/WriterDashboardPage";
+import { EditorPage } from "../pages/private/EditorPage";
 import { useAuth } from "../context/AuthContext";
 
 function PlaceholderPage({ title }) {
@@ -31,15 +37,54 @@ function GuestOnlyRoute({ children }) {
   return children;
 }
 
+function ProtectedRoute({ children }) {
+  const { isAuthenticated, isCheckingSession } = useAuth();
+
+  if (isCheckingSession) return null;
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+}
+
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
 
-      <Route path="/explorar" element={<PlaceholderPage title="Explorar historias" />} />
+      <Route path="/explorar" element={<ExplorePage />} />
+      <Route path="/story/:storyId" element={<StoryReaderPage />} />
+      <Route path="/story/:storyId/chapter/:chapterId" element={<StoryReaderPage />} />
       <Route path="/autores" element={<PlaceholderPage title="Autores" />} />
       <Route path="/perfil" element={<PlaceholderPage title="Perfil" />} />
-      <Route path="/app" element={<PlaceholderPage title="Mesa de trabajo" />} />
+
+      {/* Protected Routes */}
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <WriterDashboardPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/editor/:storyId"
+        element={
+          <ProtectedRoute>
+            <EditorPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/app"
+        element={
+          <ProtectedRoute>
+            <WriterDashboardPage />
+          </ProtectedRoute>
+        }
+      />
 
       <Route
         path="/login"
@@ -55,6 +100,24 @@ export default function AppRoutes() {
         element={
           <GuestOnlyRoute>
             <RegisterPage />
+          </GuestOnlyRoute>
+        }
+      />
+
+      <Route
+        path="/forgot-password"
+        element={
+          <GuestOnlyRoute>
+            <ForgotPasswordPage />
+          </GuestOnlyRoute>
+        }
+      />
+
+      <Route
+        path="/reset-password"
+        element={
+          <GuestOnlyRoute>
+            <ResetPasswordPage />
           </GuestOnlyRoute>
         }
       />
