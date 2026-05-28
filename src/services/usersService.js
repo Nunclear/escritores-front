@@ -19,6 +19,12 @@ export const usersService = {
     return response.data;
   },
 
+  // Get all authors/users
+  getAuthors: async (params = {}) => {
+    const response = await api.get('/users', { params });
+    return response.data;
+  },
+
   // Update user profile
   updateProfile: async (data) => {
     const response = await api.put('/users/me', data);

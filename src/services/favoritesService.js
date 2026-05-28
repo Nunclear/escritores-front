@@ -1,7 +1,13 @@
 import api from './api';
 
 export const favoritesService = {
-  // Get my favorites
+  // Get user favorites
+  getUserFavorites: async (params = {}) => {
+    const response = await api.get('/favorites/me', { params });
+    return response.data;
+  },
+
+  // Get my favorites (alias)
   getMyFavorites: async (params = {}) => {
     const response = await api.get('/favorites/me', { params });
     return response.data;

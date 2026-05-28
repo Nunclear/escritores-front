@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { LoadingState } from './LoadingState';
 
-export function ProtectedRoute({
+export default function ProtectedRoute({
   children,
   requiredRoles = null,
   fallback = '/login',
