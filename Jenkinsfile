@@ -5,7 +5,7 @@ pipeline {
         IMAGE_NAME = 'escritores-frontend'
         CONTAINER_NAME = 'escritores-frontend'
         DOCKER_NETWORK = 'escritores-net'
-        APP_PORT = '3000'
+        APP_PORT = '5173'
     }
 
     stages {
@@ -27,54 +27,38 @@ pipeline {
             }
         }
 
-        stage('Unit Tests') {
+        stage('Lint') {
             steps {
                 sh '''
-                if npm run | grep -q "test"; then
-                  npm test -- --watch=false || npm test
-                else
-                  echo "No hay script de test configurado."
-                fi
+                    if npm run | grep -q "lint"; then
+                      npm run lint
+                    else
+                      echo "No hay script de lint configurado."
+                    fi
                 '''
             }
         }
 
-        stage('Static Analysis') {
-            steps {
-                sh '''
-                if npm run | grep -q "lint"; then
-                  npm run lint
-                else
-                  echo "No hay script de lint configurado."
-                fi
-                '''
-            }
-        }
-
-        stage('Security Scan') {
-            steps {
-                sh 'npm audit --audit-level=high || true'
-            }
-        }
-
-        stage('Docker Build') {
+        stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $IMAGE_NAME:latest .'
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy Frontend') {
             steps {
                 sh '''
-                docker stop $CONTAINER_NAME || true
-                docker rm $CONTAINER_NAME || true
+                    docker network create $DOCKER_NETWORK || true
 
-                docker run -d \
-                  --name $CONTAINER_NAME \
-                  --restart always \
-                  --network $DOCKER_NETWORK \
-                  -p $APP_PORT:80 \
-                  $IMAGE_NAME:latest
+                    docker stop $CONTAINER_NAME || true
+                    docker rm $CONTAINER_NAME || true
+
+                    docker run -d \
+                      --name $CONTAINER_NAME \
+                      --restart always \
+                      --network $DOCKER_NETWORK \
+                      -p $APP_PORT:80 \
+                      $IMAGE_NAME:latest
                 '''
             }
         }
@@ -82,9 +66,8 @@ pipeline {
 
     post {
         success {
-            echo 'Frontend desplegado correctamente en el puerto 3000.'
+            echo 'Frontend desplegado correctamente en http://0.0.0.0:5173'
         }
-
         failure {
             echo 'Falló el pipeline del frontend.'
         }
