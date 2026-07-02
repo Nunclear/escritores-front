@@ -16,15 +16,23 @@ pipeline {
             }
         }
 
-        stage('Debug NPM Jenkins') {
+        stage('Debug NPM') {
             steps {
                 sh '''
+                    echo "Usuario:"
                     whoami
+
+                    echo "Node:"
                     node -v
+
+                    echo "NPM:"
                     npm -v
+
+                    echo "Registry:"
                     npm config get registry
-                    env | grep -i proxy || true
-                    curl -I https://registry.npmjs.org/ || true
+
+                    echo "Buscando registry interno en archivos:"
+                    grep -R "applied-caas\\|artifactory\\|npm-public" package-lock.json .npmrc 2>/dev/null || true
                 '''
             }
         }
@@ -35,13 +43,12 @@ pipeline {
                     npm config set registry https://registry.npmjs.org/
                     npm config delete proxy || true
                     npm config delete https-proxy || true
-                    npm cache clean --force
 
-                    if [ -f package-lock.json ]; then
-                      npm ci --fetch-retries=5 --fetch-timeout=120000
-                    else
-                      npm install --fetch-retries=5 --fetch-timeout=120000
-                    fi
+                    rm -rf node_modules
+
+                    npm ci --registry=https://registry.npmjs.org/ \
+                      --fetch-retries=5 \
+                      --fetch-timeout=120000
                 '''
             }
         }
