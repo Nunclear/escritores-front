@@ -6,6 +6,10 @@ pipeline {
         CONTAINER_NAME = 'escritores-frontend'
         DOCKER_NETWORK = 'escritores-net'
         APP_PORT = '5173'
+
+        NPM_CONFIG_REGISTRY = 'https://registry.npmjs.org/'
+        NPM_CONFIG_FETCH_RETRIES = '5'
+        NPM_CONFIG_FETCH_TIMEOUT = '120000'
     }
 
     stages {
@@ -15,15 +19,28 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Fix NPM Registry') {
             steps {
-                sh 'npm install'
+                sh '''
+                    npm config set registry https://registry.npmjs.org/
+                    npm config delete proxy || true
+                    npm config delete https-proxy || true
+                    npm config get registry
+                '''
             }
         }
 
-        stage('Build React Vite') {
+        stage('Install Dependencies') {
             steps {
-                sh 'npm run build'
+                sh '''
+                    npm cache clean --force
+
+                    if [ -f package-lock.json ]; then
+                      npm ci --fetch-retries=5 --fetch-timeout=120000
+                    else
+                      npm install --fetch-retries=5 --fetch-timeout=120000
+                    fi
+                '''
             }
         }
 
@@ -36,6 +53,12 @@ pipeline {
                       echo "No hay script de lint configurado."
                     fi
                 '''
+            }
+        }
+
+        stage('Build React Vite') {
+            steps {
+                sh 'npm run build'
             }
         }
 
