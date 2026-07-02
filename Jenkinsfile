@@ -6,6 +6,7 @@ pipeline {
         CONTAINER_NAME = 'escritores-frontend'
         DOCKER_NETWORK = 'escritores-net'
         APP_PORT = '5173'
+        NPM_CONFIG_REGISTRY = 'https://registry.npmjs.org/'
     }
 
     stages {
@@ -15,9 +16,33 @@ pipeline {
             }
         }
 
+        stage('Debug NPM Jenkins') {
+            steps {
+                sh '''
+                    whoami
+                    node -v
+                    npm -v
+                    npm config get registry
+                    env | grep -i proxy || true
+                    curl -I https://registry.npmjs.org/ || true
+                '''
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                sh '''
+                    npm config set registry https://registry.npmjs.org/
+                    npm config delete proxy || true
+                    npm config delete https-proxy || true
+                    npm cache clean --force
+
+                    if [ -f package-lock.json ]; then
+                      npm ci --fetch-retries=5 --fetch-timeout=120000
+                    else
+                      npm install --fetch-retries=5 --fetch-timeout=120000
+                    fi
+                '''
             }
         }
 
