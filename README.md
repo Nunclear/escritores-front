@@ -1,73 +1,84 @@
-# React + TypeScript + Vite
+# Raíz de Palabras
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Plataforma profesional para escritores y lectores hecha con React + Vite. Incluye feed público, ranking de más vistas, filtros, portada de historia, sala de lectura, autenticación, estudio del escritor, modo oscuro y cliente API configurable.
 
-Currently, two official plugins are available:
+## Configuración
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+`.env.production`:
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs.........
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_API_URL=http://localhost:8080
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+El cliente usa automáticamente:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```txt
+http://localhost:8080/api
 ```
+
+## Ejecutar
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+npm run preview
+```
+
+## Funcionalidad pública solicitada
+
+### Página de inicio
+
+- Feed público sin login.
+- Historias recientes por `/stories`.
+- Búsqueda por título/descripción por `/stories/search?q=...`.
+- Filtros por género y estado de publicación.
+- Ranking de más vistas por `/metrics/stories/top-viewed`.
+- Cards con portada, título, autor, descripción, vistas, favoritos y rating.
+- Click en card hacia `/historia/:storyId`.
+
+### Portada de historia
+
+- Portada grande, título, descripción y autor enlazado.
+- Promedio de calificaciones por `/ratings/story/{storyId}/average`.
+- Total de favoritos por `/favorites/story/{storyId}/count`.
+- Visitas públicas tomadas del ranking y registro de visita por `/metrics/views/story`.
+- Lista de capítulos publicados por `/chapters/story/{storyId}/published`.
+- Agrupación por arcos y volúmenes usando `/arcs/story/{storyId}` y `/volumes/story/{storyId}`.
+- Botón para empezar desde el primer capítulo o saltar a cualquier capítulo.
+
+## Rutas
+
+- `/` Inicio público.
+- `/historia/:storyId` Portada de historia.
+- `/leer/:storyId/capitulo/:chapterId` Lector de capítulo.
+- `/autor/:authorId` Perfil público preparado.
+- `/acceso` Login/registro.
+- `/escritor` Estudio de escritura.
+- `/dashboard` Panel privado.
+
+## Actualización de lectura y perfil público
+
+Nuevas pantallas incluidas:
+
+- `/leer/:storyId/capitulo/:chapterId`: lectura limpia de capítulo con título, subtítulo, cuerpo, navegación anterior/siguiente, comentarios por capítulo, respuestas en hilos y calificación de historia.
+- `/autor/:authorId`: perfil público del autor con avatar, biografía, seguidores, historias publicadas, catálogo público y botón para seguir si el usuario está autenticado.
+
+Endpoints usados en estas pantallas:
+
+- `GET /chapters/{id}`
+- `GET /chapters/story/{storyId}/published`
+- `GET /comments/chapter/{chapterId}`
+- `POST /comments`
+- `POST /ratings`
+- `GET /users/{id}/public-profile`
+- `GET /users/{id}/stories`
+- `POST /follows`
+- `DELETE /follows/{followedUserId}`
+- `GET /follows/user/{userId}/count`
+- `GET /follows/user/{userId}/me`

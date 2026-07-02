@@ -1,147 +1,27 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { StatusBadge } from './StatusBadge';
-import { getInitials } from '../utils/helpers';
+import { BookOpen, Eye, Heart, Star } from 'lucide-react';
+import { getInitials, normalizeStory } from '../utils/story';
 
-export function StoryCard({
-  story,
-  variant = 'default',
-  onClick,
-  className = '',
-}) {
-  const {
-    id,
-    title,
-    slug,
-    description,
-    coverImageUrl,
-    author,
-    publicationState,
-    visibilityState,
-    rating,
-    favoriteCount,
-    chapterCount,
-    viewCount,
-  } = story;
-
-  const storyUrl = `/story/${slug || id}`;
-
-  if (variant === 'horizontal') {
-    return (
-      <Link
-        to={storyUrl}
-        className={`editorial-card flex gap-4 p-4 hover:shadow-warm-lg transition-shadow cursor-pointer ${className}`}
-        onClick={onClick}
-      >
-        <div className="w-24 h-32 flex-shrink-0 rounded-editorial overflow-hidden bg-cream">
-          {coverImageUrl ? (
-            <img
-              src={coverImageUrl}
-              alt={title}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-cream to-sand">
-              <span className="text-2xl font-serif font-bold text-coffee">
-                {getInitials(title)}
-              </span>
-            </div>
-          )}
-        </div>
-
-        <div className="flex-1 flex flex-col justify-between">
-          <div>
-            <div className="flex items-start gap-2 mb-2">
-              <h3 className="font-serif font-bold text-lg text-text-primary flex-1 line-clamp-2">
-                {title}
-              </h3>
-              <StatusBadge status={publicationState} />
-            </div>
-            <p className="text-text-secondary font-sans text-sm line-clamp-2 mb-2">
-              {description}
-            </p>
-            <p className="text-text-secondary font-sans text-xs">
-              Por {author?.displayName}
-            </p>
-          </div>
-
-          <div className="flex gap-4 text-text-secondary font-sans text-xs">
-            {rating && <span>⭐ {rating.toFixed(1)}</span>}
-            {favoriteCount > 0 && <span>❤️ {favoriteCount}</span>}
-            {chapterCount > 0 && <span>📖 {chapterCount} capítulos</span>}
-            {viewCount > 0 && <span>👁️ {viewCount} vistas</span>}
-          </div>
-        </div>
-      </Link>
-    );
-  }
-
-  return (
-    <Link
-      to={storyUrl}
-      className={`editorial-card flex flex-col overflow-hidden hover:shadow-warm-lg transition-shadow cursor-pointer ${className}`}
-      onClick={onClick}
-    >
-      <div className="relative w-full h-40 bg-cream overflow-hidden rounded-t-editorial">
-        {coverImageUrl ? (
-          <img
-            src={coverImageUrl}
-            alt={title}
-            className="w-full h-full object-cover hover:scale-105 transition-transform"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-cream to-sand">
-            <span className="text-4xl font-serif font-bold text-coffee opacity-50">
-              {getInitials(title)}
-            </span>
-          </div>
-        )}
-        <div className="absolute top-3 right-3">
-          <StatusBadge status={publicationState} />
-        </div>
-      </div>
-
-      <div className="p-4 flex-1 flex flex-col gap-2">
-        <h3 className="font-serif font-bold text-lg text-text-primary line-clamp-2">
-          {title}
-        </h3>
-
-        <p className="text-text-secondary font-sans text-sm line-clamp-2 flex-1">
-          {description}
-        </p>
-
-        <div className="text-text-secondary font-sans text-xs space-y-1">
-          <p>Por {author?.displayName}</p>
-          <div className="flex gap-3 flex-wrap">
-            {rating && <span>⭐ {rating.toFixed(1)}</span>}
-            {favoriteCount > 0 && <span>❤️ {favoriteCount}</span>}
-            {chapterCount > 0 && <span>📖 {chapterCount}</span>}
-          </div>
-        </div>
-      </div>
-    </Link>
-  );
+function Avatar({ author, storyId }) {
+  if (author?.avatarUrl) return <img src={author.avatarUrl} alt="" />;
+  return <span className="avatar-fallback small">{getInitials(author?.displayName || `Autor ${storyId}`)}</span>;
 }
 
-export function StoryCardGrid({ stories = [], onStoryClick, variant = 'default' }) {
-  if (stories.length === 0) {
-    return null;
-  }
-
-  const gridClass = variant === 'horizontal'
-    ? 'space-y-3'
-    : 'grid gap-6 md:grid-cols-2 lg:grid-cols-3';
-
+export default function StoryCard({ story }) {
+  const item = normalizeStory(story);
   return (
-    <div className={gridClass}>
-      {stories.map((story) => (
-        <StoryCard
-          key={story.id}
-          story={story}
-          variant={variant}
-          onClick={() => onStoryClick?.(story)}
-        />
-      ))}
-    </div>
+    <article className="story-card">
+      <Link className="cover-wrap" to={`/historia/${item.id}`}>
+        {item.coverImageUrl ? <img src={item.coverImageUrl} alt={`Portada de ${item.title}`} /> : <div className="cover-placeholder"><BookOpen size={34} /><span>Sin portada</span></div>}
+        <span className="status-chip">{item.publicationState || 'published'}</span>
+      </Link>
+      <div className="story-body">
+        <div className="author-line"><Avatar author={item.author} storyId={item.id} /><span>{item.author?.displayName || 'Autor'}</span></div>
+        <Link to={`/historia/${item.id}`}><h3>{item.title}</h3></Link>
+        <p>{item.description}</p>
+        <div className="tag-row">{(item.tags || [item.genre]).slice(0, 3).map((tag) => <span key={tag}>{tag}</span>)}</div>
+        <div className="card-meta"><span><Star size={15} /> {item.averageScore ?? '—'}</span><span><Eye size={15} /> {item.views ?? '—'}</span><span><Heart size={15} /> {item.favorites ?? '—'}</span><Link className="text-link" to={`/historia/${item.id}`}><BookOpen size={15} /> Portada</Link></div>
+      </div>
+    </article>
   );
 }
