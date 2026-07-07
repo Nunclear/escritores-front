@@ -1,0 +1,100 @@
+site_name: Raíz de Palabras - Documentación Frontend
+site_description: Documentación técnica completa del frontend de Raíz de Palabras
+site_author: Equipo de Desarrollo - Nunclear
+site_url: https://docs.ejemplo.com
+
+theme:
+  name: material
+  language: es
+  palette:
+    - scheme: light
+      primary: amber
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Modo oscuro
+    - scheme: dark
+      primary: amber
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Modo claro
+  
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.select
+
+nav:
+  - Inicio: index.md
+  - Arquitectura: arquitectura.md
+  - Estructura: estructura.md
+  - Configuración: configuracion.md
+  - Rutas: rutas.md
+  - Componentes: componentes.md
+  - Servicios API: servicios-api.md
+  - Gestión de Estados: estados.md
+  - Formularios: formularios.md
+  - Assets: assets.md
+  - Autenticación: autenticacion.md
+  - Ejecución Local: ejecucion-local.md
+  - Build Producción: build-produccion.md
+  - Despliegue: despliegue.md
+  - Errores Comunes: errores-comunes.md
+  - Pruebas: pruebas.md
+
+plugins:
+  - search:
+      lang: es
+  - mermaid2
+
+markdown_extensions:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.magiclink
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+  - toc:
+      permalink: true
+  - admonition
+  - attr_list
+  - md_in_html
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Nunclear/escritores-front
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com
+  
+  version:
+    provider: mike
+    default: latest
+
+extra_css:
+  - assets/extra.css
+
+copyright: '&copy; 2024 Nunclear. Todos los derechos reservados.'
+
+watch:
+  - docs

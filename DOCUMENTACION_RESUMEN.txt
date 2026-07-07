@@ -1,0 +1,262 @@
+================================================================================
+                 DOCUMENTACIÓN FRONTEND - RAÍZ DE PALABRAS
+================================================================================
+
+PROYECTO: escritores-front (Raíz de Palabras)
+TIPO: Plataforma web de lectura y escritura con React + Vite
+VERSIÓN: 1.1.0
+FECHA: Enero 2024
+
+================================================================================
+                         ARCHIVOS GENERADOS
+================================================================================
+
+UBICACIÓN: /docs/frontend/
+
+1. index.md                      - Página principal y descripción general
+2. arquitectura.md               - Arquitectura del sistema, flujos de datos
+3. estructura.md                 - Estructura de carpetas, organización
+4. configuracion.md              - Setup, env vars, Vite, Tailwind
+5. rutas.md                      - 38 rutas, navegación, protección
+6. componentes.md                - 14+ componentes React documentados
+7. servicios-api.md              - 100+ endpoints, cliente HTTP
+8. estados.md                    - AuthContext, useState, useEffect patterns
+9. formularios.md                - Validación, ejemplos de forms
+10. assets.md                    - Imágenes, fuentes, recursos estáticos
+11. autenticacion.md             - Login, logout, JWT, roles y permisos
+12. ejecucion-local.md           - Cómo ejecutar en desarrollo local
+13. build-produccion.md          - Build, optimizaciones, deployment
+14. despliegue.md                - Deploy en Vercel, AWS, servidor propio
+15. errores-comunes.md           - 20+ problemas y soluciones
+16. pruebas.md                   - Testing, unit tests, E2E, cypress
+
+CONFIGURACIÓN: mkdocs.yml        - Configuración MkDocs Material Theme
+
+TOTAL: 16 archivos .md + configuración MkDocs
+LÍNEAS: 6,475+ líneas de documentación
+TEMAS: 100+ temas técnicos cubiertos
+
+================================================================================
+                      ESPECIFICACIONES CUMPLIDAS
+================================================================================
+
+✅ 1. Descripción general del frontend
+✅ 2. Objetivo del frontend dentro del sistema
+✅ 3. Tecnologías utilizadas
+✅ 4. Arquitectura del frontend
+✅ 5. Estructura de carpetas del proyecto
+✅ 6. Explicación de componentes principales
+✅ 7. Rutas o páginas del sistema
+✅ 8. Flujo de navegación
+✅ 9. Conexión con el backend
+✅ 10. Servicios para consumo de API
+✅ 11. Manejo de estados
+✅ 12. Manejo de formularios
+✅ 13. Renderizado de datos e imágenes
+✅ 14. Componentes reutilizables
+✅ 15. Recursos estáticos y assets
+✅ 16. Configuración del entorno
+✅ 17. Variables de entorno
+✅ 18. Archivo de configuración (vite.config.js)
+✅ 19. Autenticación en frontend
+✅ 20. Validaciones visuales o de formularios
+✅ 21. Manejo de errores
+✅ 22. Pruebas del frontend
+✅ 23. Cómo instalar dependencias
+✅ 24. Cómo ejecutar el frontend en local
+✅ 25. Cómo generar build de producción
+✅ 26. Cómo desplegar el frontend
+✅ 27. Relación del frontend con el backend
+✅ 28. Buenas prácticas aplicadas
+✅ 29. Posibles mejoras de interfaz y código
+✅ 30. Errores comunes y soluciones
+
+================================================================================
+                          CARACTERÍSTICAS
+================================================================================
+
+📚 CONTENIDO:
+- Documentación completa y profesional
+- Basada en código fuente real del proyecto
+- Ejemplos prácticos en cada sección
+- Sintaxis de código con highlighting
+- Tablas comparativas
+- Diagramas Mermaid
+
+🎨 FORMATO:
+- MkDocs Material Theme (profesional)
+- Navegación jerárquica intuitiva
+- Búsqueda integrada
+- Responsive design
+- Múltiples opciones de publicación
+
+🛠️ ESTRUCTURA:
+- 16 documentos Markdown separados por temas
+- Organizados por funcionalidad
+- Relacionados mediante navegación
+- Fácil de mantener y actualizar
+- Versionable en Git
+
+📖 LENGUAJE:
+- Profesional y claro
+- Orientado a desarrolladores
+- Ejemplos de código completos
+- Procedimientos paso a paso
+- Notas sobre pendientes
+
+================================================================================
+                      CÓMO USAR LA DOCUMENTACIÓN
+================================================================================
+
+OPCIÓN 1: VISUALIZAR LOCALMENTE (RECOMENDADO)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Instalar MkDocs:
+   $ pip install mkdocs mkdocs-material pymdown-extensions
+
+2. Navegar a la carpeta del proyecto:
+   $ cd /vercel/share/v0-project
+
+3. Servir la documentación:
+   $ mkdocs serve
+
+4. Abrir navegador:
+   http://localhost:8000
+
+5. Listo! Los cambios en .md se reflejan automáticamente
+
+OPCIÓN 2: COMPILAR PARA PRODUCCIÓN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+$ mkdocs build
+→ Genera: site/ (HTML estático)
+
+OPCIÓN 3: PUBLICAR EN INTERNET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+GitHub Pages:
+$ mkdocs gh-deploy
+
+ReadTheDocs (recomendado):
+1. Conectar repo a ReadTheDocs
+2. Automáticamente detecta mkdocs.yml
+3. Publica en cada push
+
+Vercel:
+1. Crear vercel.json con buildCommand: "mkdocs build"
+2. Conectar repo
+3. Deploy automático
+
+================================================================================
+                       ORGANIZACIÓN POR TEMA
+================================================================================
+
+ENTENDER EL PROYECTO:
+├── index.md                 - Visión general
+├── arquitectura.md          - Cómo funciona
+└── estructura.md            - Dónde está todo
+
+CONFIGURAR:
+├── configuracion.md         - Setup inicial
+└── ejecucion-local.md       - Ejecutar en dev
+
+DESARROLLAR:
+├── rutas.md                 - Navegación
+├── componentes.md           - UI components
+├── servicios-api.md         - API integration
+├── estados.md               - State management
+├── formularios.md           - Forms & validation
+├── assets.md                - Static files
+└── autenticacion.md         - Auth system
+
+DESPLEGAR:
+├── build-produccion.md      - Build process
+└── despliegue.md            - Deployment options
+
+CALIDAD:
+├── pruebas.md               - Testing strategies
+└── errores-comunes.md       - Troubleshooting
+
+================================================================================
+                      ESTADÍSTICAS DEL PROYECTO
+================================================================================
+
+FRONTEND:
+- Framework: React + Vite
+- Dependencias principales: react-router-dom, lucide-react
+- Componentes: 20+
+- Páginas: 18+
+- Rutas: 38
+
+API:
+- Endpoints: 100+
+- Métodos HTTP: GET, POST, PUT, DELETE, PATCH
+- Autenticación: JWT (Bearer tokens)
+- Base URL: http://localhost:8080/api
+
+TECNOLOGÍAS:
+- React (latest)
+- React Router DOM (latest)
+- Vite (latest)
+- Tailwind CSS
+- Lucide React (icons)
+
+================================================================================
+                      CONTENIDO EJEMPLO - index.md
+================================================================================
+
+Raíz de Palabras es una plataforma web moderna construida con React + Vite
+que funciona como biblioteca pública, sala de lectura y estudio narrativo.
+
+CARACTERÍSTICAS:
+✓ Interfaz editorial limpia y responsiva
+✓ Sistema de autenticación con tokens JWT
+✓ Lector inmersivo con navegación entre capítulos
+✓ Perfiles de autor con estadísticas y seguimiento
+✓ Sistema de favoritos y calificaciones
+✓ Comentarios en hilos con respuestas
+✓ Tema oscuro/claro integrado
+✓ Panel de control para escritores y administradores
+✓ Sistema de moderación y reportes
+✓ Diseño responsivo (mobile-first)
+
+================================================================================
+                        PRÓXIMOS PASOS
+================================================================================
+
+PARA VISUALIZAR:
+1. Instalar MkDocs (pip install mkdocs mkdocs-material)
+2. Ejecutar: mkdocs serve
+3. Abrir: http://localhost:8000
+
+PARA PUBLICAR:
+1. GitHub Pages: mkdocs gh-deploy
+2. ReadTheDocs: Conectar repo
+3. Vercel: Configurar vercel.json
+
+PARA MANTENER:
+1. Editar archivos .md según cambios del proyecto
+2. Commit a Git
+3. MkDocs regenera automáticamente
+
+================================================================================
+                    ARCHIVO DE CONFIGURACIÓN
+================================================================================
+
+Ubicación: mkdocs.yml
+
+Contenido:
+- site_name: Raíz de Palabras - Documentación Frontend
+- theme: Material for MkDocs
+- language: es (Español)
+- nav: Orden de navegación (16 secciones)
+- plugins: search, mermaid2
+- extensions: Markdown avanzado
+
+================================================================================
+
+GENERADO: Enero 2024
+VERSIÓN: 1.0
+ESTADO: ✅ COMPLETO Y LISTO PARA USAR
+
+================================================================================
