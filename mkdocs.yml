@@ -1,0 +1,104 @@
+site_name: Raíz de Palabras - Documentación Frontend
+site_url: https://ejemplo.com/docs
+repo_url: https://github.com/Nunclear/escritores-front
+repo_name: Nunclear/escritores-front
+edit_uri: edit/main/docs/frontend/
+
+theme:
+  name: material
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/lightbulb-outline
+        name: Cambiar a tema oscuro
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/lightbulb
+        name: Cambiar a tema claro
+  
+  font:
+    text: Roboto
+    code: Roboto Mono
+  
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - toc.follow
+    - toc.sticky
+    - content.code.copy
+    - content.action.edit
+
+language: es
+
+plugins:
+  - search:
+      lang: es
+  - mermaid2
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.emoji:
+      emoji_index: pymdownx.emoji.twemoji
+      emoji_generator: pymdownx.emoji.to_svg
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+  - codehilite
+  - toc:
+      toc_depth: 3
+
+nav:
+  - Inicio: index.md
+  - Arquitectura: arquitectura.md
+  - Estructura: estructura.md
+  - Configuración: configuracion.md
+  - Rutas y Navegación: rutas.md
+  - Componentes: componentes.md
+  - Servicios API: servicios-api.md
+  - Gestión de Estados: estados.md
+  - Formularios: formularios.md
+  - Assets e Imágenes: assets.md
+  - Autenticación: autenticacion.md
+  - Pruebas: pruebas.md
+  - Ejecución Local: ejecucion-local.md
+  - Build Producción: build-produccion.md
+  - Despliegue: despliegue.md
+  - Errores Comunes: errores-comunes.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Nunclear/escritores-front
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com
+  
+  version:
+    provider: mike
+
+copyright: >
+  Copyright &copy; 2024
+  <a href="https://github.com/Nunclear/escritores-front" target="_blank" rel="noopener">
+    Nunclear - Escritores Front
+  </a>
+  – Documentación oficial del frontend.

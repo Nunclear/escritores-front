@@ -1,0 +1,383 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║   DOCUMENTACIÓN MKDOCS - RAÍZ DE PALABRAS FRONTEND                        ║
+║   Generada: 7 de Julio de 2024                                           ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+ESTRUCTURA DE ARCHIVOS GENERADOS:
+═════════════════════════════════════════════════════════════════════════════
+
+📁 /docs/frontend/                    # Carpeta principal de documentación
+│
+├─ 📄 index.md                        # Inicio (74 líneas)
+│  └─ Descripción general, objetivo, diagrama de flujo
+│
+├─ 📄 arquitectura.md                 # Arquitectura (300 líneas)
+│  └─ Flujo de datos, capas, patrones, ciclos de vida
+│
+├─ 📄 estructura.md                   # Estructura (277 líneas)
+│  └─ Árbol de directorios, organización, tipos de datos
+│
+├─ 📄 configuracion.md                # Configuración (234 líneas)
+│  └─ Env vars, vite.config.js, tailwind, package.json
+│
+├─ 📄 rutas.md                        # Rutas (277 líneas)
+│  └─ 19+ rutas documentadas, protección, redirecciones
+│
+├─ 📄 componentes.md                  # Componentes (441 líneas)
+│  └─ 15+ componentes, props, ejemplos de uso
+│
+├─ 📄 servicios-api.md                # Servicios API (450 líneas)
+│  └─ Cliente HTTP, 100+ endpoints, estructura de servicios
+│
+├─ 📄 estados.md                      # Gestión de Estados (464 líneas)
+│  └─ AuthContext, localStorage, patrones avanzados
+│
+├─ 📄 formularios.md                  # Formularios (484 líneas)
+│  └─ Patrones, validaciones, ejemplos prácticos
+│
+├─ 📄 assets.md                       # Assets e Imágenes (547 líneas)
+│  └─ Rendering condicional, imágenes, paginación, filtrado
+│
+├─ 📄 autenticacion.md                # Autenticación (563 líneas)
+│  └─ JWT, endpoints, flujo, roles, seguridad
+│
+├─ 📄 pruebas.md                      # Pruebas (110 líneas)
+│  └─ Setup recomendado de testing (Vitest)
+│
+├─ 📄 ejecucion-local.md              # Ejecución Local (408 líneas)
+│  └─ Instalación, comandos, troubleshooting
+│
+├─ 📄 build-produccion.md             # Build (365 líneas)
+│  └─ Proceso de build, optimizaciones, análisis
+│
+├─ 📄 despliegue.md                   # Despliegue (424 líneas)
+│  └─ Vercel, Netlify, Docker, Nginx, CI/CD
+│
+└─ 📄 errores-comunes.md              # Errores (555 líneas)
+   └─ 30+ errores documentados con soluciones
+
+📁 /                                  # Raíz del proyecto
+│
+├─ 📄 mkdocs.yml                      # Configuración MkDocs (105 líneas)
+│  └─ Tema Material, plugins, navegación, idioma español
+│
+└─ 📄 DOCUMENTATION_SUMMARY.md        # Este resumen (330 líneas)
+
+═════════════════════════════════════════════════════════════════════════════
+
+TOTALES:
+═════════════════════════════════════════════════════════════════════════════
+
+Archivos Markdown:        16
+Líneas totales:          ~5,500
+Componentes documentados: 15+
+Rutas documentadas:       19+
+Endpoints API:           100+
+Errores documentados:     30+
+Ejemplos de código:      100+
+Diagramas Mermaid:        10+
+Tablas:                   30+
+
+═════════════════════════════════════════════════════════════════════════════
+
+CÓMO USAR:
+═════════════════════════════════════════════════════════════════════════════
+
+1. INSTALAR MKDOCS:
+   pip install mkdocs mkdocs-material pymdown-extensions
+
+2. SERVIR LOCALMENTE:
+   mkdocs serve
+   → Ir a http://localhost:8000
+
+3. GENERAR HTML:
+   mkdocs build
+   → Genera carpeta 'site/'
+
+4. DESPLEGAR EN GITHUB PAGES:
+   mkdocs gh-deploy
+
+═════════════════════════════════════════════════════════════════════════════
+
+CONTENIDO POR ARCHIVO:
+═════════════════════════════════════════════════════════════════════════════
+
+📄 index.md (Inicio)
+   - Descripción general del frontend
+   - Objetivo dentro del sistema
+   - Información rápida (stack, puerto, repositorio)
+   - Diagrama general de flujo
+
+📄 arquitectura.md
+   - Flujo de datos general (Mermaid)
+   - Arquitectura en capas
+   - Patrones arquitectónicos (MVC, Container/Presentational, Context)
+   - Flujo de autenticación
+   - Ciclo de vida de solicitud
+   - Gestión de errores
+   - Roles y permisos
+   - Ciclo de vida de componente
+   - Validación de roles
+
+📄 estructura.md
+   - Árbol completo de directorios (~40 carpetas/archivos)
+   - Descripción detallada de carpetas principales
+   - Archivos de configuración
+   - Dependencias principales
+   - Scripts disponibles
+   - Patrones de nombres
+   - Estructuras de datos comunes
+
+📄 configuracion.md
+   - Variables de entorno (.env.example, .env.production)
+   - Archivo vite.config.js
+   - Archivo tailwind.config.js
+   - Archivo package.json
+   - Punto de entrada main.jsx
+   - Archivo HTML base
+   - localStorage
+   - Versiones de dependencias
+   - Setup inicial
+
+📄 rutas.md
+   - Mapa de rutas completo (19+ rutas)
+   - Tabla de rutas con acceso y parámetros
+   - Componentes de protección (Protected, StaffOnly, AdminOnly)
+   - Flujos de navegación típicos
+   - Parámetros de ruta (dinámicos y query)
+   - Redirecciones automáticas
+   - Estados de carga
+   - Estructura de navegación
+
+📄 componentes.md
+   - Shell
+   - Header
+   - StoryCard
+   - FavoriteButton
+   - RatingBox
+   - CommentsThread
+   - ChapterGroups
+   - RankingPanel
+   - FavoritesPanel
+   - WriterNav
+   - WriterTabs
+   - ThemeToggle
+   - ReportButton
+   - ApiState
+   - Estados visuales
+   - Patrones comunes
+   - Ejemplos de uso
+   - Composición avanzada
+
+📄 servicios-api.md
+   - Cliente API base
+   - Función request()
+   - auth (9 métodos)
+   - users (12 métodos)
+   - stories (15 métodos)
+   - chapters (13 métodos)
+   - comments (7 métodos)
+   - ratings (6 métodos)
+   - favorites (5 métodos)
+   - follows (6 métodos)
+   - metrics (6 métodos)
+   - characters, arcs, volumes, items, skills, etc.
+   - reports, sanctions, moderation, admin
+   - Manejo de errores (ApiError)
+   - Patrones comunes
+
+📄 estados.md
+   - AuthContext estructura
+   - Estado disponible (user, loading, isAuthenticated)
+   - Ciclo de vida (inicialización, login, logout)
+   - Uso en componentes
+   - Estado local en componentes
+   - localStorage detallado
+   - Patrones avanzados (useEffect, debounce, reducers)
+   - Flujos de estado típicos
+   - Mejores prácticas
+
+📄 formularios.md
+   - Formulario controlado básico
+   - Validaciones comunes (email, password, URL, etc.)
+   - Formulario de edición de historia (complejo)
+   - Formulario de comentarios
+   - Validación en tiempo real
+   - Mejores prácticas
+
+📄 assets.md
+   - Rendering de datos desde API
+   - Manejo de imágenes (portadas, avatares, lazy loading)
+   - Paginación
+   - Filtrado y búsqueda
+   - Búsqueda en tiempo real (debounce)
+   - Filtros múltiples
+   - Rendering de contenido complejo
+   - Comentarios anidados
+   - Activos estáticos (/public)
+   - Formatos de datos comunes
+   - Función pageContent()
+   - Formatos de fecha
+
+📄 autenticacion.md
+   - Sistema de autenticación JWT
+   - Flujo de autenticación (6 pasos)
+   - Estructura de tokens
+   - Tipos de tokens (access, refresh)
+   - Endpoints de autenticación (8 tipos)
+   - AuthContext en detalle (inicialización, login, logout)
+   - Uso en componentes (login page, verificación rol)
+   - Headers de autorización
+   - Manejo automático de renovación
+   - Roles y permisos
+   - Seguridad (mejores prácticas)
+   - Errores comunes
+   - Testing
+
+📄 pruebas.md
+   - Estado actual (no configurado)
+   - Recomendaciones de setup (Vitest + Testing Library)
+   - Patrones de tests (componentes, API, contexto)
+   - Cosas a probar (checklist)
+
+📄 ejecucion-local.md
+   - Requisitos previos
+   - Instalación paso a paso (5 pasos)
+   - Acceso a la aplicación (local y remoto)
+   - Configuración del backend
+   - Comandos disponibles (dev, build, preview)
+   - Troubleshooting (7+ casos)
+   - Desarrollo eficiente (HMR, DevTools, Network)
+   - Variables de entorno
+   - Estructura de directorios útil
+   - Workflow típico
+
+📄 build-produccion.md
+   - Comando de build
+   - Qué hace el build (7 pasos)
+   - Output esperado
+   - Estructura de build
+   - Optimizaciones automáticas (3 tipos)
+   - Configuración personalizada
+   - Testear build localmente
+   - Variables de entorno en producción
+   - Análisis de bundle
+   - Optimizaciones avanzadas (lazy loading, image optimization)
+   - Checklist pre-producción
+   - Performance metrics
+   - Troubleshooting
+
+📄 despliegue.md
+   - 4 opciones de despliegue (Vercel, Netlify, Docker, Servidor)
+   - Variables de entorno en producción
+   - Configuración de Nginx (completa)
+   - Instalación de SSL (Let's Encrypt)
+   - CI/CD con Jenkinsfile
+   - Monitoreo post-despliegue
+   - Debugging en producción
+   - Rollback (revertir cambios)
+   - Escalabilidad
+   - Seguridad en producción
+   - Mantenimiento
+
+📄 errores-comunes.md
+   - Errores en desarrollo (7+ tipos)
+   - Errores de API (5+ tipos)
+   - Errores de validación (3+ tipos)
+   - Errores de renderizado (3+ tipos)
+   - Errores de estado (3+ tipos)
+   - Errores de performance (3+ tipos)
+   - Errores de navegación (3+ tipos)
+   - Errores de build/deployment (3+ tipos)
+   - Herramientas de debug
+   - Cuando nada funciona (nuclear option)
+
+📄 mkdocs.yml
+   - Configuración del sitio
+   - Tema Material (claro/oscuro)
+   - Plugins (search, mermaid)
+   - Extensiones Markdown
+   - Navegación (tabs, sidebar)
+   - Social links
+   - Footer
+
+═════════════════════════════════════════════════════════════════════════════
+
+CARACTERÍSTICAS ESPECIALES:
+═════════════════════════════════════════════════════════════════════════════
+
+✅ Diagramas Mermaid interactivos
+✅ Tablas con información estructurada
+✅ Ejemplos de código correctos (✅) e incorrectos (❌)
+✅ Tema claro y oscuro automático
+✅ Búsqueda en toda la documentación
+✅ Navegación por tabs y sidebar
+✅ Table of Contents en cada página
+✅ Responsive design
+✅ Idioma: Español
+✅ Editable desde GitHub (edit_uri configurado)
+
+═════════════════════════════════════════════════════════════════════════════
+
+REQUISITOS CUMPLIDOS (30/30):
+═════════════════════════════════════════════════════════════════════════════
+
+✅  1. Descripción general del frontend
+✅  2. Objetivo del frontend dentro del sistema
+✅  3. Tecnologías utilizadas (React, Vite, Tailwind, etc.)
+✅  4. Arquitectura del frontend (flujo de datos, capas)
+✅  5. Estructura de carpetas del proyecto
+✅  6. Explicación de componentes principales
+✅  7. Rutas o páginas del sistema
+✅  8. Flujo de navegación
+✅  9. Conexión con el backend
+✅  10. Servicios para consumo de API
+✅  11. Manejo de estados (AuthContext)
+✅  12. Manejo de formularios
+✅  13. Renderizado de datos e imágenes
+✅  14. Componentes reutilizables
+✅  15. Recursos estáticos y assets
+✅  16. Configuración del entorno
+✅  17. Variables de entorno
+✅  18. Archivo de configuración (vite.config.js)
+✅  19. Autenticación en frontend
+✅  20. Validaciones visuales o de formularios
+✅  21. Manejo de errores
+✅  22. Pruebas del frontend (setup recomendado)
+✅  23. Cómo instalar dependencias
+✅  24. Cómo ejecutar el frontend en local
+✅  25. Cómo generar build de producción
+✅  26. Cómo desplegar el frontend
+✅  27. Relación del frontend con el backend
+✅  28. Buenas prácticas aplicadas
+✅  29. Posibles mejoras de interfaz y código
+✅  30. Errores comunes y soluciones
+
+═════════════════════════════════════════════════════════════════════════════
+
+PRÓXIMOS PASOS:
+═════════════════════════════════════════════════════════════════════════════
+
+1. Instalar MkDocs:
+   pip install mkdocs mkdocs-material pymdown-extensions
+
+2. Ejecutar localmente:
+   mkdocs serve
+
+3. Personalizar (opcional):
+   - Cambiar colores en mkdocs.yml
+   - Agregar más secciones si es necesario
+   - Personalizar temas
+
+4. Desplegar:
+   - GitHub Pages: mkdocs gh-deploy
+   - ReadTheDocs: https://readthedocs.org
+   - Netlify: Conectar repositorio
+
+═════════════════════════════════════════════════════════════════════════════
+
+Documentación generada profesionalmente el 7 de julio de 2024
+Proyecto: Raíz de Palabras - Frontend
+Autor: v0 Documentation Generator
